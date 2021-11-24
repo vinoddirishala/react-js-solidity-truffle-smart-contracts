@@ -1,0 +1,18 @@
+{
+  "CONTRACT_ADDRESS": "0x8016e7c45ceb286df3f2e685434665caf56d8755",
+  "SCAN_LINK": "https://polygonscan.com/token/0x8016e7c45ceb286df3f2e685434665caf56d8755",
+  "NETWORK": {
+    "NAME": "Polygon",
+    "SYMBOL": "Matic",
+    "ID": 137
+  },
+  "NFT_NAME": "PolyBunny",
+  "SYMBOL": "PolyBunny",
+  "MAX_SUPPLY": 10000,
+  "WEI_COST": 10000000000000000000,
+  "DISPLAY_COST": 10,
+  "GAS_LIMIT": 285000,
+  "MARKETPLACE": "Opeansea",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/polybunny",
+  "SHOW_BACKGROUND": true
+}
