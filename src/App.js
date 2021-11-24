@@ -37,7 +37,7 @@ class App extends Component{
       console.log("Install metamask");
     }
 
-
+ 
     async askForMetaMaskSigning(){
       let ethereum = window.ethereum;
       try {
