@@ -6,19 +6,19 @@ class App extends Component{
 
   constructor(props){
     super(props);
-    this.state = {isWalletConnected:false,walletAddress:''};
+    this.state = {
+      isWalletConnected:false,
+      walletAddress:''};
   }
 
   render(){
     return(
       <div className="container">
-          {this.state.isWalletConnected ? 
-          (<h3>Connected to {this.state.walletAddress}</h3>)
-          :
-          (
-            
-          <button onClick={async () => {await this.connectToMetaMask();} }>Connect to wallet</button>
-          )}
+          {!this.state.isWalletConnected ? <button onClick={async () => {await this.connectToMetaMask();} }>Connect to wallet</button>:null}
+
+          <button onClick={async () => {await this.uploadAssetToIPFS();} }>Upload to IPFS</button>
+
+
       </div>
     )}
 
@@ -28,7 +28,8 @@ class App extends Component{
       if (window.ethereum) {
         this.askForMetaMaskSigning();
       }else{
-        this.setState = {isWalletConnected:false}
+        this.state.isWalletConnected = false;
+        this.state.walletAddress = '';
         this.showInstallMetaMaskAlert();
       }
     }
@@ -43,17 +44,20 @@ class App extends Component{
       try {
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
-        this.setState = {isWalletConnected:true}
-        this.setState = {walletAddress:account[0]}
-        console.log(account);
+        this.state.isWalletConnected = true;
+        this.state.walletAddress = account;
+        
         
         } catch {
-        
-          this.setState = {isWalletConnected:false}
-          this.setState = {walletAddress:''}
+          this.state.isWalletConnected = false;
+          this.state.walletAddress = '';
         }
 
   
+    }
+
+    async uploadAssetToIPFS(){
+      console.log("Hello World");
     }
 
 
