@@ -1,0 +1,19 @@
+{
+    "networks":{
+        "matic-mainnet":{
+            "netWorkID":137,
+            "chainID":137,
+            "netWorkName":"MATIC Mainnet"
+        },
+        "matic-testnet":{
+            "netWorkID":80001,
+            "chainID":80001,
+            "netWorkName":"MATIC Mumbai"
+        },
+        "ethereum":{
+            "netWorkID":1,
+            "chainID":1,
+            "netWorkName":"Ethereum Mainnet"
+        }
+    }
+}
