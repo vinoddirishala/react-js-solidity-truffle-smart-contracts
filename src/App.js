@@ -1,7 +1,10 @@
 import './App.css';
 import Web3 from 'web3'
+import Web3EthContracts from 'web3-eth-contract'
+
 import React,{Component} from 'react'
 const config = require('./config.json');
+const abiJson = require('./abi.json');
 
 
 class App extends Component{
@@ -46,6 +49,9 @@ class App extends Component{
     async askForMetaMaskSigning(){
       let ethereum = window.ethereum;
       try {
+       // Web3EthContracts.setProvider(ethereum);
+        
+
         // ask for metamask sign transaction
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
@@ -58,8 +64,8 @@ class App extends Component{
         }
 
          // detect Network account change
-        ethereum.on('networkChanged', function(networkId){
-           console.log('networkChanged',networkId);
+        ethereum.on('chainChanged', function(networkId){
+           console.log('chainChanged',networkId);
         });
 
           // listener to detect the account change
@@ -68,10 +74,17 @@ class App extends Component{
     
         });
 
+      
+
         this.state.isWalletConnected = true;
         this.state.walletAddress = account;
 
+       // console.log(abiJson);
 
+        // fetch data from a sample smart contract using abi and contract address
+        const smartContractObje = Web3(ethereum).eth.Contract(abiJson);
+
+        console.log(smartContractObje);
         
         
         } catch {
