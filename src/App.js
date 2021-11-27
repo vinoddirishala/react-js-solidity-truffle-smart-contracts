@@ -1,6 +1,6 @@
 import './App.css';
 import Web3 from 'web3'
-import Web3EthContracts from 'web3-eth-contract'
+import Web3EthContract from 'web3-eth-contract'
 
 import React,{Component} from 'react'
 const config = require('./config.json');
@@ -47,9 +47,12 @@ class App extends Component{
 
  
     async askForMetaMaskSigning(){
-      let ethereum = window.ethereum;
+
+        let ethereum = window.ethereum;
       try {
-       // Web3EthContracts.setProvider(ethereum);
+
+        Web3EthContract.setProvider(ethereum);
+        let web3 = new Web3(ethereum);
         
 
         // ask for metamask sign transaction
@@ -82,9 +85,24 @@ class App extends Component{
        // console.log(abiJson);
 
         // fetch data from a sample smart contract using abi and contract address
-        const smartContractObje = Web3(ethereum).eth.Contract(abiJson);
 
-        console.log(smartContractObje);
+        try{
+
+        const SmartContractObj = new Web3EthContract(
+          abiJson,
+          "0x8016e7c45ceb286df3f2e685434665caf56d8755"
+        );
+
+        let tSupply = await SmartContractObj.methods.totalSupply().call();
+        let baseUri = await SmartContractObj.methods.baseURI().call();
+        let owner = await SmartContractObj.methods.owner().call();
+
+
+        console.log(tSupply+"\n"+baseUri+"\n"+owner);
+        }catch(err){
+          console.log(err);
+        }
+
         
         
         } catch {
