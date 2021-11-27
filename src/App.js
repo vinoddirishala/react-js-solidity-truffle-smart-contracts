@@ -5,6 +5,7 @@ import Web3EthContract from 'web3-eth-contract'
 import React,{Component} from 'react'
 const config = require('./config.json');
 const abiJson = require('./abi.json');
+const contractJson = require('./simpleContract.json');
 
 
 class App extends Component{
@@ -82,27 +83,48 @@ class App extends Component{
         this.state.isWalletConnected = true;
         this.state.walletAddress = account;
 
-       // console.log(abiJson);
-
-        // fetch data from a sample smart contract using abi and contract address
 
         try{
+          // create new smart contract on to testnet from react js and web3
+         // create json data for smart contract to be created
+         
+         let freshlyCreatedSmartContractData = await new web3.eth.Contract(abiJson,account,
+          {
+            'from':account,
+            'gasPrice':'20000000000'
+          });
 
-        const SmartContractObj = new Web3EthContract(
-          abiJson,
-          "0x8016e7c45ceb286df3f2e685434665caf56d8755"
-        );
+          
 
-        let tSupply = await SmartContractObj.methods.totalSupply().call();
-        let baseUri = await SmartContractObj.methods.baseURI().call();
-        let owner = await SmartContractObj.methods.owner().call();
-        let symbol = await SmartContractObj.methods.symbol().call();
-
-
-        console.log(tSupply+"\n"+baseUri+"\n"+owner+"\n"+symbol);
-        }catch(err){
-          console.log(err);
+         console.log(freshlyCreatedSmartContractData);
+        }catch(error){
+          console.log(error);
         }
+
+
+        
+
+        // fetch data from PolyBunny's smart contract using abi and contract address
+
+      //  try{
+
+      //  const SmartContractObj = new Web3EthContract(
+      //    abiJson,
+      //    "0x8016e7c45ceb286df3f2e685434665caf56d8755"
+      //  );
+
+      //  let tSupply = await SmartContractObj.methods.totalSupply().call();
+      //  let baseUri = await SmartContractObj.methods.baseURI().call();
+      //  let owner = await SmartContractObj.methods.owner().call();
+      //  let symbol = await SmartContractObj.methods.symbol().call();
+
+
+      //  console.log(tSupply+"\n"+baseUri+"\n"+owner+"\n"+symbol);
+      //  }catch(err){
+      //    console.log(err);
+      //  }
+
+       
 
         
         
