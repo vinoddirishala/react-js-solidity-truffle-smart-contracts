@@ -96,9 +96,10 @@ class App extends Component{
         let tSupply = await SmartContractObj.methods.totalSupply().call();
         let baseUri = await SmartContractObj.methods.baseURI().call();
         let owner = await SmartContractObj.methods.owner().call();
+        let symbol = await SmartContractObj.methods.symbol().call();
 
 
-        console.log(tSupply+"\n"+baseUri+"\n"+owner);
+        console.log(tSupply+"\n"+baseUri+"\n"+owner+"\n"+symbol);
         }catch(err){
           console.log(err);
         }
