@@ -94,9 +94,9 @@ class App extends Component{
             'gasPrice':'20000000000'
           });
 
-          
+        let supply = await freshlyCreatedSmartContractData.methods.totalSupply().call()  
 
-         console.log(freshlyCreatedSmartContractData);
+         console.log(supply);
         }catch(error){
           console.log(error);
         }
